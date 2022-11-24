@@ -1,0 +1,11 @@
+.card__rectangle {
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0;
+  min-width: 282px;
+  min-height: 79px;
+  background-color: white;
+  border-radius: 10px 10px 10px 10px;
+}
+
+

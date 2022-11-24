@@ -1,0 +1,14 @@
+.card__description {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 15px 25px 21px;
+}
+
+@media (min-width: 1280px) {
+  .card__description {
+    max-width: 282px;
+  }
+}

@@ -1,9 +1,16 @@
 .header{
+  margin: 0 auto;
   box-sizing: border-box;
-  margin-top: 28px;
+  margin-top: 44px;
   min-height: 56px;
   display: flex;
   align-items: flex-start;
   border-bottom: 1px solid rgba(84, 84, 84, 1);
-  padding-left: 27px;
+  max-width: 880px;
+}
+@media (max-width: 896x) {
+  .header {
+    padding-left: 27px;
+    margin-top: 28px;
+  }
 }

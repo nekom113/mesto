@@ -1,16 +1,24 @@
 .profile__edit-button {
-  border: none;
   margin: 0;
+  border: none;
   padding: 0;
   margin-left: 20px;
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   background-color: black;
   background-image: url(../../../icons/Edit\ Button.svg);
-  background-size: 7.5px 7.5px;
+  background-size: 10px 10px;
   background-position: center;
   background-repeat: no-repeat;
   border: 1px white solid;
   border-radius: 1px;
+}
 
+@media (max-width: 896x) {
+  .profile__title {
+    width: 18px;
+    height: 18px;
+    background-size: 7.5px 7.5px;
+
+  }
 }

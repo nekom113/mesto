@@ -1,0 +1,14 @@
+.card {
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 100%;
+  border-radius: 10px 10px 10px 10px;
+}
+
+@media (max-width: 880px) {
+  .card {
+    max-width: 282px;
+    padding-top: 20px;
+  }
+}
