@@ -9,9 +9,16 @@
   /* margin-left: 5px; */
   
 }
-@media (max-width: 896x) {
+@media (max-width: 42px) {
   .profile__title {
     text-align: center;
+    font-size: 27px;
+    line-height: 38px;
+  }
+}
+
+@media (max-width: 420px) {
+  .profile__title {
     font-size: 27px;
     line-height: 33px;
   }

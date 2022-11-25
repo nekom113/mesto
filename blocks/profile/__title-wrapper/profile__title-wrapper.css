@@ -6,7 +6,7 @@
   /* padding-left: 17px; */
 }
 
-@media (max-width: 896x) {
+@media (max-width: 896px) {
   .profile__title-wrapper {
     justify-content: center;
   }

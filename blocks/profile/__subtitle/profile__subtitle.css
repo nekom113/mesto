@@ -7,10 +7,15 @@
   font-weight: 400;
 }
 
-@media (max-width: 896x) {
+@media (max-width: 896px) {
   .profile__subtitle {
     margin-top: 19px;
     text-align: center;
+  }
+}
+@media (max-width: 460px) {
+  .profile__subtitle {
+    margin-top: 14px;
     font-size: 14px;
     line-height: 17px;
   }

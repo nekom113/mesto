@@ -1,4 +1,4 @@
-.header{
+.header {
   margin: 0 auto;
   box-sizing: border-box;
   margin-top: 44px;
@@ -8,8 +8,10 @@
   border-bottom: 1px solid rgba(84, 84, 84, 1);
   max-width: 880px;
 }
-@media (max-width: 896x) {
+
+@media (max-width: 896px) {
   .header {
+    margin-top: 28px;
     padding-left: 27px;
     margin-top: 28px;
   }
