@@ -14,6 +14,13 @@
   border-radius: 1px;
 }
 
+.profile__edit-button:hover {
+
+  opacity: .5;
+  transition: opacity .5s ease;
+  /* background-color: red; */
+}
+
 @media (max-width: 896x) {
   .profile__title {
     width: 18px;

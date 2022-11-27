@@ -8,4 +8,20 @@
   color: white;
   font-size: 18px;
   line-height: 22px;
+  border-radius: 2px;
+}
+
+.popup__save-button:hover {
+  background-color: rgba(0, 0, 0, .8);
+
+}
+
+@media (max-width: 530px) {
+  .popup__save-button {
+    width: 238px;
+    height: 46px;
+    margin: 45px 0 25px;
+    font-size: 14px;
+    line-height: 17px;
+  }
 }

@@ -2,14 +2,29 @@
   margin: 0;
   padding: 0;
   position: absolute;
+  border: none;
   top: -35px;
   left: 435px;
-  border: none;
   width: 32px;
   height: 32px;
   background-image: url(../../../icons/Close_Icon.svg);
-  background-size: 32px 32px;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: rgba(64, 89, 230, .0);
+  background-color: transparent;
+}
+
+
+.popup__close-icon:hover {
+  opacity: .6;
+}
+
+
+@media(max-width: 530px) {
+  .popup__close-icon {
+    top: -32px;
+    left: 256px;
+    background-size: 20px 20px;
+
+  }
 }
