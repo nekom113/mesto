@@ -1,6 +1,5 @@
 .profile__add-button {
   margin: 0 auto;
-  border: none;
   padding: 0;
   width: 214px;
   height: 50px;
@@ -18,10 +17,9 @@
 
   opacity: .5;
   transition: opacity .5s ease;
-  /* background-color: red; */
 }
 
-@media (max-width: 896x) {
+@media (max-width: 896px) {
   .profile__add-button {
     background-size: 16px 16px;
     width: 282px;

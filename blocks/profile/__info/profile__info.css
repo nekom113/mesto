@@ -4,7 +4,7 @@
   padding-left: 30px;
 }
 
-@media (max-width: 896x) {
+@media (max-width: 896px) {
   .profile__info {
     margin-top: 26px;
     margin: 0 auto;
