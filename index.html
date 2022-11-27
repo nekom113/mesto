@@ -18,7 +18,7 @@
     <div class="profile__info">
       <div class="profile__title-wrapper">
         <h1 class="profile__title">Жак-Ив Кусто</h1>
-        <button data-popupOpen class="profile__edit-button" type="button" aria-label="Изменить профиль"></button>
+        <button data-popup-open class="profile__edit-button" type="button" aria-label="Изменить профиль"></button>
       </div>
       <p class="profile__subtitle">Исследователь океана</p>
     </div>
@@ -86,13 +86,12 @@
   </footer>
   <section class="popup">
     <div class="popup__container">
-      <button data-popupClose class="popup__close-icon" type="button" aria-label="Закрыть окно"></button>
+      <button data-popup-close class="popup__close-icon" type="button" aria-label="Закрыть окно"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" name="editProfileForm">
-        <input class="popup__input" id="name" name="name" type="text" placeholder="введите имя" >
-        <input class="popup__input" id="description" name="discription" type="text"
-          placeholder="Расскажите о себе" >
-        <button data-popupClose class="popup__save-button" type="submit">Сохранить</button>
+        <input class="popup__input" id="name" name="name" type="text" placeholder="введите имя">
+        <input class="popup__input" id="description" name="discription" type="text" placeholder="Расскажите о себе">
+        <button data-popup-close class="popup__save-button" type="submit">Сохранить</button>
       </form>
     </div>
   </section>
