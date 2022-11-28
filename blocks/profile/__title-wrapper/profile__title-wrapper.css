@@ -3,11 +3,11 @@
   display: flex;
   align-items: center;
   justify-content: start;
-  /* padding-left: 17px; */
 }
 
 @media (max-width: 896px) {
   .profile__title-wrapper {
+    min-width: 282px;
     justify-content: center;
   }
 }

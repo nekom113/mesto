@@ -9,11 +9,12 @@
   column-gap: 17px;
 }
 
-@media (max-width: 895px) {
+@media (max-width: 910px) {
   .cards {
+    row-gap: 0;
     padding-top: 16px;
     grid-template-columns: repeat(2, 1fr);
-    max-width: calc(880px - 282px);
+    max-width: calc(880px - 300px);
   }
 }
 

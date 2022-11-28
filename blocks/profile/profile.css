@@ -8,8 +8,9 @@
 
 @media (min-width: 896px) {
   .profile {
+    margin: 0 auto 16px;
     flex-direction: row;
-    justify-content:space-between;
+    justify-content: space-between;
     max-width: 880px;
   }
 }

@@ -5,7 +5,7 @@
   width: 22px;
   height: 19px;
   background-image: url('../../../icons/like.svg');
-  background-color: white;
+  background-color: inherit;
   background-position: center;
   background-repeat: no-repeat;
 }

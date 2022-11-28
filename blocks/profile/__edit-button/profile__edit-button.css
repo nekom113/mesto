@@ -4,7 +4,7 @@
   margin-left: 20px;
   width: 24px;
   height: 24px;
-  background-color: black;
+  background-color: inherit;
   background-image: url(../../../icons/Edit\ Button.svg);
   background-size: 10px 10px;
   background-position: center;
@@ -15,15 +15,15 @@
 
 .profile__edit-button:hover {
 
-  opacity: .5;
+  opacity: .6;
   transition: opacity .5s ease;
 }
 
 @media (max-width: 896px) {
-  .profile__title {
+  .profile__edit-button {
+    margin: 28px 13px 0;
     width: 18px;
     height: 18px;
     background-size: 7.5px 7.5px;
-
   }
 }

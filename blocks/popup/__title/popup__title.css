@@ -5,15 +5,11 @@
   line-height: 29px;
   font-weight: 900;
   color: black;
-  text-align: center;
-  padding-top: 34px;
 }
 
-@media(max-width: 530px) {
+@media(max-width: 620px) {
   .popup__title {
     font-size: 18px;
     line-height: 22px;
-    padding-top: 25px;
-
   }
 }
