@@ -1,6 +1,9 @@
 const popup = document.querySelector('.popup')
-const buttonPopupEdit = document.querySelectorAll('[data-popup-open]')
-const buttonPopupSafe = document.querySelectorAll('[data-popup-close]')
+// const buttonPopupEdit = document.querySelectorAll('[data-popup-open]')
+const editButton = document.querySelector('.profile__edit-button')
+// const buttonPopupSave = document.querySelectorAll('[data-popup-close]')
+const buttonPopupSave = document.querySelector('.popup__close-icon')
+
 const conteinerPopup = document.querySelector('.popup__container')
 const profileName = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
@@ -17,17 +20,23 @@ function popupClose() {
   popup.classList.remove('popup_opened')
 }
 
-buttonPopupEdit.forEach(el => {
-  el.addEventListener('click', popupOpen)
+// buttonPopupEdit.forEach(el => {
+//   el.addEventListener('click', popupOpen)
+// })
+
+// buttonPopupSave.forEach(el => {
+//   el.addEventListener('click', popupClose)
+// })
+
+editButton.addEventListener('click', popupOpen)
+buttonPopupSave.addEventListener('click', () => {
+  popupClose();
+
 })
 
-buttonPopupSafe.forEach(el => {
-  el.addEventListener('click', popupClose)
-})
-
-
-function listenPlaceholder() {
+function listenInput() {
   inputEdit.forEach(el => {
+    console.log(el)
     if (el.id === 'name') {
       el.placeholder = profileName.innerText
     } else if (el.id === 'description') {
@@ -39,7 +48,8 @@ function listenPlaceholder() {
 function handleFormSubmit(evt) {
   evt.preventDefault();
 
-  inputEdit.forEach(el => {
+  
+  .forEach(el => {
     if (el.id === 'name') {
       profileName.innerText = el.value
     } else if (el.id === 'description') {
@@ -49,5 +59,5 @@ function handleFormSubmit(evt) {
   })
 }
 
-listenPlaceholder()
+listenInput()
 formElement.addEventListener('submit', handleFormSubmit);

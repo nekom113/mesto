@@ -5,17 +5,24 @@
   font-weight: 500;
   line-height: 48px;
   font-size: 42px;
- 
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 294px;
+
 }
+
 @media (max-width: 896px) {
   .profile__title {
     padding-top: 28px;
   }
 }
+
 @media (max-width: 420px) {
   .profile__title {
     padding-top: 28px;
     font-size: 27px;
     line-height: 33px;
+    max-width: 189px;
   }
 }

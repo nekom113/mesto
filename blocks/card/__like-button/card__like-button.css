@@ -11,7 +11,7 @@
 }
 
 .card__like-button:hover {
-
+  cursor: pointer;
   opacity: .5;
   transition: opacity .5s ease;
   /* background-color: red; */
