@@ -3,8 +3,8 @@ const editButton = document.querySelector('.profile__edit-button')
 const buttonPopupSave = document.querySelector('.popup__close-icon')
 const profileName = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
-const inputName = document.querySelector('.popup__input_type-name')
-const inputDescription = document.querySelector('.popup__input_type-description')
+const inputName = document.querySelector('.popup__input_type_name')
+const inputDescription = document.querySelector('.popup__input_type_description')
 const saveEditButton = document.querySelector('.popup__save-button')
 
 function getProfileDataToForm(){
@@ -24,7 +24,6 @@ function popupOpen() {
 
 function popupClose() {
   popup.classList.remove('popup_opened');
-  getProfileDataToForm();
 };
 
 editButton.addEventListener('click', popupOpen);
