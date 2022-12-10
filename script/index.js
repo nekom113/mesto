@@ -6,6 +6,10 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const inputName = document.querySelector('.popup__input_type_name')
 const inputDescription = document.querySelector('.popup__input_type_description')
 const saveEditButton = document.querySelector('.popup__save-button')
+const cardsBox = document.querySelector('.cards');
+const cards = document.querySelector('.cards')
+const template = document.querySelector('#template')
+const cardAddBotton = document.querySelector('.profile__add-button')
 
 function getProfileDataToForm() {
   inputName.value = profileName.textContent;
@@ -63,10 +67,24 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-const cardsBox = document.querySelector('.cards');
 
-function createCards(arrDB) {
+function createCard(arrDB) {
 
-  return
+  arrDB.forEach(element => {
+    const newCard = template.content.cloneNode(true)
+    newCard.querySelector('.card__img').src
+      = element.link;
+    newCard.querySelector('.card__img').alt
+      = element.name;
+    newCard.querySelector('.card__title').textContent
+      = element.name;
+
+    cards.append(newCard)
+  });
 }
-console.log();
+
+createCard(initialCards)
+
+
+//================ add  new card ===================
+

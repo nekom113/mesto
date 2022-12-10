@@ -20,56 +20,22 @@
       <div class="profile__info">
         <div class="profile__title-wrapper">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <button  class="profile__edit-button" type="button" aria-label="Изменить профиль"></button>
+          <button class="profile__edit-button" type="button" aria-label="Изменить профиль"></button>
         </div>
         <p class="profile__subtitle">Исследователь океана</p>
       </div>
       <button class="profile__add-button" type="button" aria-label="Добавить новую карточку"></button>
     </section>
     <section class="cards">
-      <div class="card">
-        <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__img">
-        <div class="card__description">
-          <h2 class="card__title">КараКараКарачаевск</h2>
-          <button class="card__like-button card__like-button_active" type="button"
-            aria-label="Добавить в избранное"></button>
+      <template id="template">
+        <div class="card">
+          <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__img">
+          <div class="card__description">
+            <h2 class="card__title">КараКараКарачаевск</h2>
+            <button class="card__like-button" type="button" aria-label="Добавить в избранное"></button>
+          </div>
         </div>
-      </div>
-      <div class="card">
-        <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__img">
-        <div class="card__description">
-          <h2 class="card__title">Карачаевск</h2>
-          <button class="card__like-button" type="button" aria-label="Добавить в избранное"></button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__img">
-        <div class="card__description">
-          <h2 class="card__title">Карачаевск</h2>
-          <button class="card__like-button" type="button" aria-label="Добавить в избранное"></button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__img">
-        <div class="card__description">
-          <h2 class="card__title">Карачаевск</h2>
-          <button class="card__like-button" type="button" aria-label="Добавить в избранное"></button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__img">
-        <div class="card__description">
-          <h2 class="card__title">Карачаевск</h2>
-          <button class="card__like-button" type="button" aria-label="Добавить в избранное"></button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__img">
-        <div class="card__description">
-          <h2 class="card__title">Карачаевск</h2>
-          <button class="card__like-button" type="button" aria-label="Добавить в избранное"></button>
-        </div>
-      </div>
+      </template>
     </section>
   </main>
   <footer class="footer">
@@ -84,6 +50,18 @@
         <input class="popup__input popup__input_type_description" id="description" name="discription" type="text"
           placeholder="Расскажите о себе">
         <button class="popup__save-button" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup-place">
+    <div class="popup-place__container">
+      <button class="popup-place__close-icon" type="button" aria-label="Закрыть окно"></button>
+      <h2 class="popup-place__title">Новое место</h2>
+      <form class="popup-place__form" name="editProfileForm">
+        <input class="popup-place__input popup__input_type_name" id="name" name="name" type="text" placeholder="Название">
+        <input class="popup-place__input popup__input_type_description" id="description" name="discription" type="text"
+          placeholder="Ссылка на картинку">
+        <button class="popup-place__save-button" type="submit">Создать</button>
       </form>
     </div>
   </div>
