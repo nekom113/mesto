@@ -67,7 +67,7 @@ const initialCards = [
   }
 ];
 
-function createCard(arrDB) {
+function renderCards(arrDB) {
 
   arrDB.forEach(element => {
     const newCard = template.content.cloneNode(true)
@@ -77,12 +77,13 @@ function createCard(arrDB) {
       = element.name;
     newCard.querySelector('.card__title').textContent
       = element.name;
+      newCard.querySelector('.card__delete-button').addEventListener('click', deleteCard);
 
     cards.append(newCard)
   });
 }
 
-createCard(initialCards)
+renderCards(initialCards)
 
 
 //================ open popap for add  new card ===================
@@ -96,11 +97,53 @@ const popupAddCardSaveBtn = document.querySelector('#popup-save-btn')
 
 buttonAddCard.addEventListener('click', ev => popupOpen(popupAddCardPlace))
 popupAddCardCloseBtn.addEventListener('click', ev => popupClose(popupAddCardPlace))
+
+
+//================ add card ===================
+const inputPlaceCall = document.querySelector('.popup__input_type_place-call')
+const inputPlaceImgLink = document.querySelector('.popup__input_type_image_link')
+
+
+function addNewCard() {
+  const newCard = template.content.cloneNode(true)
+  newCard.querySelector('.card__img').src
+    = inputPlaceImgLink.value;
+  newCard.querySelector('.card__img').alt
+    = inputPlaceCall.value;
+  newCard.querySelector('.card__title').textContent
+    = inputPlaceCall.value;
+  newCard.querySelector('.card__delete-button').addEventListener('click', deleteCard);
+  return cards.prepend(newCard)
+};
+
+
 popupAddCardSaveBtn.addEventListener('click', ev => {
   ev.preventDefault()
+  addNewCard()
+  inputPlaceCall.value = ''
+  inputPlaceImgLink.value = ''
   popupClose(popupAddCardPlace)
 })
 
+//================ delete card ===================
 
-//================ open popap for add  new card ===================
+function deleteCard(select) {
+  const cardItem = select.target.closest('.card');
+  cardItem.remove()
+}
 
+//================ like card ===================
+
+function addCardLike(){
+  
+  const buttonLikeCard = document.querySelectorAll('.card__like-button')
+  
+  buttonLikeCard.forEach(el=>{
+    el.addEventListener('click', ()=>{
+    el.classList.toggle('card__like-button_active')
+    })
+  })
+}
+addCardLike()
+
+//================ open popup picture ===================
