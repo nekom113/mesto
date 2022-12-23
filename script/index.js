@@ -9,7 +9,6 @@ const saveEditButton = document.querySelector('.popup__save-button')
 const cardsBox = document.querySelector('.cards');
 const cards = document.querySelector('.cards')
 const template = document.querySelector('#template')
-const cardAddBotton = document.querySelector('.profile__add-button')
 
 function getProfileDataToForm() {
   inputName.value = profileName.textContent;
@@ -21,23 +20,23 @@ function editProfile() {
   profileSubtitle.textContent = inputDescription.value;
 };
 
-function popupOpen() {
-  popup.classList.add('popup_opened');
+function popupOpen(popupitem) {
+  popupitem.classList.add('popup_opened');
   getProfileDataToForm();
 };
 
-function popupClose() {
-  popup.classList.remove('popup_opened');
+function popupClose(popupitem) {
+  popupitem.classList.remove('popup_opened');
 };
 
-editButton.addEventListener('click', popupOpen);
+editButton.addEventListener('click', () => popupOpen(popup));
 
-buttonPopupSave.addEventListener('click', popupClose);
+buttonPopupSave.addEventListener('click', () => popupClose(popup));
 
 saveEditButton.addEventListener('click', (e) => {
   e.preventDefault();
   editProfile();
-  popupClose();
+  popupClose(popup);
 });
 //================ create new cards ===================
 
@@ -86,5 +85,22 @@ function createCard(arrDB) {
 createCard(initialCards)
 
 
-//================ add  new card ===================
+//================ open popap for add  new card ===================
+
+
+const buttonAddCard = document.querySelector('.profile__add-button')
+const popupAddCardPlace = document.querySelector('#popup-add-card')
+const popupAddCardCloseBtn = document.querySelector('#popup-close-btn')
+const popupAddCardSaveBtn = document.querySelector('#popup-save-btn')
+
+
+buttonAddCard.addEventListener('click', ev => popupOpen(popupAddCardPlace))
+popupAddCardCloseBtn.addEventListener('click', ev => popupClose(popupAddCardPlace))
+popupAddCardSaveBtn.addEventListener('click', ev => {
+  ev.preventDefault()
+  popupClose(popupAddCardPlace)
+})
+
+
+//================ open popap for add  new card ===================
 
