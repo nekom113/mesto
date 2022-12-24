@@ -1,32 +1,29 @@
-const popup = document.querySelector('.popup')
-const editButton = document.querySelector('.profile__edit-button')
-const buttonPopupClose = document.querySelector('.popup__close-icon')
-const profileName = document.querySelector('.profile__title');
+function popupOpen(popupItem) {
+  popupItem.classList.add('popup_opened');
+};
+
+function popupClose(popupitem) {
+  popupitem.classList.remove('popup_opened');
+};
+
+// ========================edit profile ================================
 const profileSubtitle = document.querySelector('.profile__subtitle');
 const inputName = document.querySelector('.popup__input_type_name')
 const inputDescription = document.querySelector('.popup__input_type_description')
-const saveEditButton = document.querySelector('.popup__save-button')
-const cardsBox = document.querySelector('.cards');
-const cards = document.querySelector('.cards')
-const template = document.querySelector('#template')
+const popup = document.querySelector('#popup-edit-profile')
+const saveEditButton = popup.querySelector('.popup__form')
+const editButton = document.querySelector('.profile__edit-button')
+const buttonPopupClose = document.querySelector('.popup__close-icon')
+const profileName = document.querySelector('.profile__title');
 
 function getProfileDataToForm() {
   inputName.value = profileName.textContent;
   inputDescription.value = profileSubtitle.textContent;
 };
 
-function editProfile(e) {
-  e.preventDefault();
+function editProfile() {
   profileName.textContent = inputName.value;
   profileSubtitle.textContent = inputDescription.value;
-};
-
-function popupOpen(popupitem) {
-  popupitem.classList.add('popup_opened');
-};
-
-function popupClose(popupitem) {
-  popupitem.classList.remove('popup_opened');
 };
 
 editButton.addEventListener('click', () => {
@@ -36,12 +33,14 @@ editButton.addEventListener('click', () => {
 
 buttonPopupClose.addEventListener('click', () => popupClose(popup));
 
-saveEditButton.addEventListener('click', (e) => {
-  editProfile(e);
+saveEditButton.addEventListener('submit', (e) => {
+  e.preventDefault();
+  editProfile();
   popupClose(popup);
 });
 //================ create new cards ===================
-
+const cards = document.querySelector('.cards')
+const template = document.querySelector('#template')
 
 function createCards({ link, name }) {
   const newCard = template.content.cloneNode(true)
@@ -53,18 +52,8 @@ function createCards({ link, name }) {
   cardImage.addEventListener('click', (e) => showPicture(e));
   newCard.querySelector('.card__like-button').addEventListener('click', addLikeToCard)
 
-
   return newCard
 }
-
-function renderCards(arrDB) {
-  arrDB.forEach(element => {
-    cards.append(createCards(element))
-  });
-}
-
-renderCards(initialCards)
-
 
 //================ open popap for add  new card ===================
 
@@ -72,7 +61,7 @@ renderCards(initialCards)
 const buttonAddCard = document.querySelector('.profile__add-button')
 const popupAddCardPlace = document.querySelector('#popup-add-card')
 const popupAddCardCloseBtn = document.querySelector('#popup-close-btn')
-const popupAddCardSaveBtn = document.querySelector('#popup-save-btn')
+const popupAddCardSaveBtn = popupAddCardPlace.querySelector('.popup__form')
 
 
 buttonAddCard.addEventListener('click', ev => popupOpen(popupAddCardPlace))
@@ -83,16 +72,17 @@ popupAddCardCloseBtn.addEventListener('click', ev => popupClose(popupAddCardPlac
 const inputPlaceImgLink = document.querySelector('.popup__input_type_image_link')
 const inputPlaceCall = document.querySelector('.popup__input_type_place-call')
 
-function addNewCard(value) {
-  value.link = inputPlaceImgLink.value;
-  value.name = inputPlaceCall.value
-  return cards.prepend(createCards(value))
+function addNewCard() {
+  const valueCard = {
+    link: inputPlaceImgLink.value,
+    name: inputPlaceCall.value
+  }
+  return cards.prepend(createCards(valueCard))
 };
 
-
-popupAddCardSaveBtn.addEventListener('click', ev => {
+popupAddCardSaveBtn.addEventListener('submit', ev => {
   ev.preventDefault()
-  addNewCard({ inputPlaceCall, inputPlaceImgLink })
+  addNewCard()
   inputPlaceCall.value = ''
   inputPlaceImgLink.value = ''
   popupClose(popupAddCardPlace)
@@ -119,21 +109,23 @@ const btnPopupPictureClose = document.querySelector('#close-picture-popup')
 const popupPicture = document.querySelector('#popup-picture-card')
 
 
-function createImagePopup() {
-
-}
 function showPicture(event) {
   const { src, alt } = event.target
-  console.log(popupPicture.querySelector('.popup__image').src = src)
-  console.log(popupPicture.querySelector('.popup__image').currentSrc = src)
+  popupPicture.querySelector('.popup__image').src = src
   popupPicture.querySelector('.popup__title_type_picture').textContent = alt
   popupOpen(popupPicture)
 }
-
 
 btnPopupPictureClose.addEventListener('click', (ev) => {
   popupClose(popupPicture)
 });
 
+//=========================== render cards ===============================
 
+function renderCards(arrDB) {
+  arrDB.forEach(element => {
+    cards.append(createCards(element))
+  });
+}
 
+renderCards(initialCards)
