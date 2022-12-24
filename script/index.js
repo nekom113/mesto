@@ -1,29 +1,3 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 
 function popupOpen(popupItem) {
@@ -36,8 +10,8 @@ function popupClose(popupitem) {
 
 // ========================edit profile ================================
 const profileSubtitle = document.querySelector('.profile__subtitle');
-const inputName = document.querySelector('.popup__input_type_name')
-const inputDescription = document.querySelector('.popup__input_type_description')
+const inputName = document.querySelector('#name')
+const inputDescription = document.querySelector('#description')
 const popup = document.querySelector('#popup-edit-profile')
 const saveEditButton = popup.querySelector('.popup__form')
 const editButton = document.querySelector('.profile__edit-button')
@@ -97,8 +71,8 @@ popupAddCardCloseBtn.addEventListener('click', ev => popupClose(popupAddCardPlac
 
 
 //================ add card ===================
-const inputPlaceImgLink = document.querySelector('.popup__input_type_image_link')
-const inputPlaceCall = document.querySelector('.popup__input_type_place-call')
+const inputPlaceImgLink = document.querySelector('#image-link')
+const inputPlaceCall = document.querySelector('#place-call')
 
 function addNewCard() {
   const valueCard = {
