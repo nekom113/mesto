@@ -29,6 +29,7 @@
     <section class="cards">
       <template id="template">
         <div class="card">
+          <button class="card__delete-button" type="button"></button>
           <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="card__img">
           <div class="card__description">
             <h2 class="card__title">КараКараКарачаевск</h2>
@@ -41,7 +42,7 @@
   <footer class="footer">
     <p class="footer__copyright">© 2022 Mesto Russia</p>
   </footer>
-  <div class="popup">
+  <div class="popup" id="popup-edit-profile">
     <div class="popup__container">
       <button class="popup__close-icon" type="button" aria-label="Закрыть окно"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
@@ -53,19 +54,28 @@
       </form>
     </div>
   </div>
- <div class="popup" id="popup-add-card">
+  <div class="popup" id="popup-add-card">
     <div class="popup__container">
       <button class="popup__close-icon" id="popup-close-btn" type="button" aria-label="Закрыть окно"></button>
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form" name="editProfileForm">
-        <input class="popup__input popup__input_type_name" id="place-call" name="name" type="text" placeholder="Название">
-        <input class="popup__input popup__input_type_description" id="image-link" name="discription" type="text"
+      <form class="popup__form" name="addCardsForm">
+        <input class="popup__input popup__input_type_place-call" name="place-call" type="text" placeholder="Название">
+        <input class="popup__input popup__input_type_image_link" name="image-link" type="text"
           placeholder="Ссылка на картинку">
         <button class="popup__save-button" id="popup-save-btn" type="submit">Сохранить</button>
       </form>
     </div>
   </div>
+  <div class="popup" id="popup-picture-card">
+    <div class="popup__picture-wrapper">
+      <button class="popup__close-icon" id="close-picture-popup" type="button" aria-label="Закрыть окно"></button>
+      <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt=""
+        class="popup__image">
+      <figcaption class="popup__title popup__title_type_picture">Архыз</figcaption>
+    </div>
 
+  </div>
+  <script src="./script/database.js"></script>
   <script src="./script/index.js"></script>
 </body>
 
