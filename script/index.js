@@ -1,22 +1,63 @@
+const profileSubtitle = document.querySelector('.profile__subtitle');
+const inputName = document.querySelector('#name')
+const inputDescription = document.querySelector('#description')
+const profilePopup = document.querySelector('#popup-edit-profile')
+const saveEditButton = profilePopup.querySelector('.popup__form')
+const editButton = document.querySelector('.profile__edit-button')
+const buttonPopupClose = document.querySelector('.popup__close-icon')
+const profileName = document.querySelector('.profile__title');
+const inputPlaceImgLink = document.querySelector('#image-link')
+const inputPlaceCall = document.querySelector('#place-call')
+const buttonAddCard = document.querySelector('.profile__add-button')
+const popupAddCardPlace = document.querySelector('#popup-add-card')
+const popupAddCardCloseBtn = document.querySelector('#popup-close-btn')
+const popupAddCardSaveBtn = popupAddCardPlace.querySelector('.popup__form')
+const cards = document.querySelector('.cards')
+const template = document.querySelector('#template')
+const cardPlaceImage = document.querySelector('.card')
+const btnPopupPictureClose = document.querySelector('#close-picture-popup')
+const popupPicture = document.querySelector('#popup-picture-card')
+const popupPictureImage = popupPicture.querySelector('.popup__image')
+const popupPictureName = popupPicture.querySelector('.popup__title_type_picture')
 
 
-function popupOpen(popupItem) {
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+function openPopup(popupItem) {
   popupItem.classList.add('popup_opened');
 };
 
-function popupClose(popupitem) {
+function closePopup(popupitem) {
   popupitem.classList.remove('popup_opened');
 };
 
 // ========================edit profile ================================
-const profileSubtitle = document.querySelector('.profile__subtitle');
-const inputName = document.querySelector('#name')
-const inputDescription = document.querySelector('#description')
-const popup = document.querySelector('#popup-edit-profile')
-const saveEditButton = popup.querySelector('.popup__form')
-const editButton = document.querySelector('.profile__edit-button')
-const buttonPopupClose = document.querySelector('.popup__close-icon')
-const profileName = document.querySelector('.profile__title');
+
 
 function getProfileDataToForm() {
   inputName.value = profileName.textContent;
@@ -29,20 +70,18 @@ function editProfile() {
 };
 
 editButton.addEventListener('click', () => {
-  popupOpen(popup);
+  openPopup(profilePopup);
   getProfileDataToForm();
 });
 
-buttonPopupClose.addEventListener('click', () => popupClose(popup));
+buttonPopupClose.addEventListener('click', () => closePopup(profilePopup));
 
 saveEditButton.addEventListener('submit', (e) => {
   e.preventDefault();
   editProfile();
-  popupClose(popup);
+  closePopup(profilePopup);
 });
 //================ create new cards ===================
-const cards = document.querySelector('.cards')
-const template = document.querySelector('#template')
 
 function createCards({ link, name }) {
   const newCard = template.content.cloneNode(true)
@@ -59,20 +98,11 @@ function createCards({ link, name }) {
 
 //================ open popap for add  new card ===================
 
-
-const buttonAddCard = document.querySelector('.profile__add-button')
-const popupAddCardPlace = document.querySelector('#popup-add-card')
-const popupAddCardCloseBtn = document.querySelector('#popup-close-btn')
-const popupAddCardSaveBtn = popupAddCardPlace.querySelector('.popup__form')
-
-
-buttonAddCard.addEventListener('click', ev => popupOpen(popupAddCardPlace))
-popupAddCardCloseBtn.addEventListener('click', ev => popupClose(popupAddCardPlace))
+buttonAddCard.addEventListener('click', ev => openPopup(popupAddCardPlace))
+popupAddCardCloseBtn.addEventListener('click', ev => closePopup(popupAddCardPlace))
 
 
 //================ add card ===================
-const inputPlaceImgLink = document.querySelector('#image-link')
-const inputPlaceCall = document.querySelector('#place-call')
 
 function addNewCard() {
   const valueCard = {
@@ -85,9 +115,8 @@ function addNewCard() {
 popupAddCardSaveBtn.addEventListener('submit', ev => {
   ev.preventDefault()
   addNewCard()
-  inputPlaceCall.value = ''
-  inputPlaceImgLink.value = ''
-  popupClose(popupAddCardPlace)
+  ev.target.reset()
+  closePopup(popupAddCardPlace)
 })
 
 //================ delete card ===================
@@ -106,20 +135,16 @@ function addLikeToCard(el) {
 
 //================ open/close popup picture ===================
 
-const cardPlaceImage = document.querySelector('.card')
-const btnPopupPictureClose = document.querySelector('#close-picture-popup')
-const popupPicture = document.querySelector('#popup-picture-card')
-
-
 function showPicture(event) {
   const { src, alt } = event.target
-  popupPicture.querySelector('.popup__image').src = src
-  popupPicture.querySelector('.popup__title_type_picture').textContent = alt
-  popupOpen(popupPicture)
+  popupPictureImage.src = src
+  popupPictureName.textContent = alt
+  popupPictureImage.setAttribute('alt', alt)
+  openPopup(popupPicture)
 }
 
 btnPopupPictureClose.addEventListener('click', (ev) => {
-  popupClose(popupPicture)
+  closePopup(popupPicture)
 });
 
 //=========================== render cards ===============================
@@ -129,5 +154,4 @@ function renderCards(arrDB) {
     cards.append(createCards(element))
   });
 }
-
 renderCards(initialCards)
