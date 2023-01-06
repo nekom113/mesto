@@ -3,6 +3,8 @@ const inputName = document.querySelector('#name')
 const inputDescription = document.querySelector('#description')
 const profilePopup = document.querySelector('#popup-edit-profile')
 const saveEditButton = profilePopup.querySelector('.popup__form')
+const editPopupButton = profilePopup.querySelector('.popup__save-button')
+const inputEditProfileList = Array.from(profilePopup.querySelectorAll('.popup__input'))
 const editButton = document.querySelector('.profile__edit-button')
 const buttonPopupClose = document.querySelector('.popup__close-icon')
 const profileName = document.querySelector('.profile__title');
@@ -19,6 +21,7 @@ const btnPopupPictureClose = document.querySelector('#close-picture-popup')
 const popupPicture = document.querySelector('#popup-picture-card')
 const popupPictureImage = popupPicture.querySelector('.popup__image')
 const popupPictureName = popupPicture.querySelector('.popup__title_type_picture')
+const popup = document.querySelectorAll('.popup')
 
 
 const initialCards = [
@@ -53,7 +56,9 @@ function openPopup(popupItem) {
 };
 
 function closePopup(popupitem) {
-  popupitem.classList.remove('popup_opened');
+  if (popupitem) {
+    popupitem.classList.remove('popup_opened');
+  }
 };
 
 // ========================edit profile ================================
@@ -70,8 +75,10 @@ function editProfile() {
 };
 
 editButton.addEventListener('click', () => {
+
   openPopup(profilePopup);
   getProfileDataToForm();
+  toggleButtonState(inputEditProfileList, editPopupButton, validationConfig)
 });
 
 buttonPopupClose.addEventListener('click', () => closePopup(profilePopup));
@@ -146,6 +153,19 @@ function showPicture(event) {
 btnPopupPictureClose.addEventListener('click', (ev) => {
   closePopup(popupPicture)
 });
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened')
+    closePopup(popupOpened)
+  }
+})
+
+popup.forEach(popupElement => popupElement.addEventListener('click', evt => {
+  if (Array.from(evt.target.classList).includes('popup_opened')) {
+    evt.target.classList.remove('popup_opened')
+  }
+}))
+
 
 //=========================== render cards ===============================
 

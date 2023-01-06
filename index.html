@@ -47,9 +47,12 @@
       <button class="popup__close-icon" type="button" aria-label="Закрыть окно"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" name="editProfileForm">
-        <input class="popup__input" id="name" name="name" type="text" placeholder="Введите имя">
-        <input class="popup__input" id="description" name="discription" type="text"
-          placeholder="Расскажите о себе">
+        <input class="popup__input" id="name" name="name" type="text" placeholder="Введите имя" minlength="2"
+          maxlength="40" required>
+        <span class="popup__error name-error"></span>
+        <input class="popup__input" id="description" name="description" type="text" placeholder="Расскажите о себе"
+          minlength="2" maxlength="200" required>
+        <span class="popup__error description-error"></span>
         <button class="popup__save-button" type="submit">Сохранить</button>
       </form>
     </div>
@@ -59,9 +62,13 @@
       <button class="popup__close-icon" id="popup-close-btn" type="button" aria-label="Закрыть окно"></button>
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form" name="addCardsForm">
-        <input class="popup__input" id="place-call" name="place-call" type="text" placeholder="Название">
-        <input class="popup__input" id="image-link" name="image-link" type="text"
-          placeholder="Ссылка на картинку">
+        <input class="popup__input" id="place-call" name="place-call" type="text" placeholder="Название" minlength="2"
+          maxlength="30" required>
+        <span class="popup__error place-call-error"></span>
+        <input class="popup__input" id="image-link" name="image-link" type="url" placeholder="Ссылка на картинку"
+          required>
+        <span class="popup__error image-link-error"></span>
+
         <button class="popup__save-button" id="popup-save-btn" type="submit">Сохранить</button>
       </form>
     </div>
@@ -69,12 +76,13 @@
   <div class="popup" id="popup-picture-card">
     <div class="popup__picture-wrapper">
       <button class="popup__close-icon" id="close-picture-popup" type="button" aria-label="Закрыть окно"></button>
-      <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Фотография местности"
-        class="popup__image">
+      <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
+        alt="Фотография местности" class="popup__image">
       <figcaption class="popup__title popup__title_type_picture">Архыз</figcaption>
     </div>
 
   </div>
+  <script src="./script/validate.js"></script>
   <script src="./script/index.js"></script>
 </body>
 
