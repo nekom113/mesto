@@ -1,6 +1,12 @@
-import { initialCards, profileSubtitle, inputName, inputDescription, saveEditButton, editButton, profileCloseButton, profileName, inputPlaceImgLink, inputPlaceCall, buttonAddCard, popupAddCardCloseBtn, popupAddCardSaveBtn, cards, btnPopupPictureClose, popupList, popupPicture, popupAddCardPlace, profilePopup } from './config.js'
+import { initialCards, profileSubtitle, inputName, inputDescription, saveEditButton, editButton, profileCloseButton, profileName, inputPlaceImgLink, inputPlaceCall, buttonAddCard, popupAddCardCloseBtn, popupAddCardSaveBtn, cards, btnPopupPictureClose, popupList, popupPicture, popupAddCardPlace, profilePopup, validationConfig } from './config.js'
 import { openPopup, closePopup } from './utils.js';
 import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
+const validatorProfileForm = new FormValidator(validationConfig, saveEditButton)
+validatorProfileForm.enableValidation()
+const validatorCardForm = new FormValidator(validationConfig, popupAddCardSaveBtn)
+validatorCardForm.enableValidation()
 
 
 function renderCards(arrDB) {
@@ -70,6 +76,5 @@ popupList.forEach(popupElement => popupElement.addEventListener('mousedown', evt
     closePopup(document.querySelector('.popup_opened'))
   }
 }))
-
 
 
