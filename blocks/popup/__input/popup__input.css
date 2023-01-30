@@ -9,7 +9,8 @@
   border-bottom: 1px rgba(0, 0, 0, .2) solid;
   color: black;
   padding-bottom: 9px;
-  margin-top: 31px;
+  margin-top: 10px;
+  min-height: 27px;
 }
 
 .popup__input:first-of-type {
