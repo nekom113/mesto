@@ -34,7 +34,7 @@ export default class FormValidator {
   _toggleButtonState() {
     this.inputList = Array.from(this.controlSelector.querySelectorAll(this.validationConfig.inputSelector));
     this.buttonElement = this.controlSelector.querySelector(this.validationConfig.activeButtonClass);
-    if (this._hasInvalidInput(this.inputList)) {
+    if (this._hasInvalidInput()) {
       this.buttonElement.classList.add(this.validationConfig.inactiveButtonClass);
       this.buttonElement.disabled = true;
     } else {
@@ -59,7 +59,7 @@ export default class FormValidator {
     })
   }
   enableValidation() {
-    const formList = Array.from(document.querySelectorAll(this.validationConfig.formSelector));
-    formList.forEach((formElement) => this._setEventListeners(formElement, this.validationConfig))
+    const form = document.querySelector(this.validationConfig.formSelector);
+    this._setEventListeners(form, this.validationConfig)
   }
 }
