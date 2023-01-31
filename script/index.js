@@ -1,11 +1,11 @@
-import { initialCards, profileSubtitle, inputName, inputDescription, buttonSaveEdit, buttonEditProfile, profileName, inputPlaceImgLink, inputPlaceCall, buttonAddCard, popupAddCardSaveBtn, cards, popupList, popupAddCardPlace, profilePopup, validationConfig, buttonsClosePopup } from './constants.js'
+import { initialCards, profileSubtitle, inputName, inputDescription, profileForm, buttonEditProfile, profileName, inputPlaceImgLink, inputPlaceCall, buttonAddCard, cardForm, cards, popupList, popupAddCardPlace, profilePopup, validationConfig, buttonsClosePopup } from './constants.js'
 import { openPopup, closePopup } from './utils.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
-const validatorProfileForm = new FormValidator(validationConfig, buttonSaveEdit);
+const validatorProfileForm = new FormValidator(validationConfig, profileForm);
 validatorProfileForm.enableValidation()
-const validatorCardForm = new FormValidator(validationConfig, popupAddCardSaveBtn);
+const validatorCardForm = new FormValidator(validationConfig, cardForm);
 validatorCardForm.enableValidation()
 
 const createNewCard = ({ link, name }, idElement) => {
@@ -29,7 +29,7 @@ function addNewCard() {
   return cards.prepend(createNewCard(valueCard, "#template").createCard())
 };
 
-popupAddCardSaveBtn.addEventListener('submit', ev => {
+cardForm.addEventListener('submit', ev => {
   ev.preventDefault()
   addNewCard()
   ev.target.reset()
@@ -54,7 +54,7 @@ buttonEditProfile.addEventListener('click', () => {
   fillProfileInputs();
 });
 
-buttonSaveEdit.addEventListener('submit', (e) => {
+profileForm.addEventListener('submit', (e) => {
   e.preventDefault();
   editProfile();
   closePopup(profilePopup);

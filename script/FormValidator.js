@@ -59,7 +59,6 @@ export default class FormValidator {
     })
   }
   enableValidation() {
-    const form = document.querySelector(this.validationConfig.formSelector);
-    this._setEventListeners(form, this.validationConfig)
+    this._setEventListeners()
   }
 }

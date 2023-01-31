@@ -12,15 +12,6 @@ export default class Card {
       this.btnDeleteCard = this._newCard.querySelector('.card__delete-button'),
       this.btnLikeCard = this._newCard.querySelector('.card__like-button')
   }
-  createCard = () => {
-    this._cardImage.src = this._link;
-    this._cardImage.alt = this._name;
-    this.cardTitle.textContent = this._name;
-
-    this._addEventListenersToButtons()
-
-    return this._newCard
-  }
   _addEventListenersToButtons = () => {
     this.btnDeleteCard.addEventListener('click', () => this._handleDeleteCard());
     this.btnLikeCard.addEventListener('click', () => this._handlePushToggleLike())
@@ -37,6 +28,15 @@ export default class Card {
     popupPictureName.textContent = this._name
     popupPictureImage.alt = this._name
     openPopup(popupPicture)
+  }
+  createCard = () => {
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
+    this.cardTitle.textContent = this._name;
+
+    this._addEventListenersToButtons()
+
+    return this._newCard
   }
 }
 
