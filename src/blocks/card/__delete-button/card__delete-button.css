@@ -7,7 +7,7 @@
   top: 20px;
   right: 20px;
   border: none;
-  background: transparent url("../../../icons/Trash_icon.svg");
+  background: transparent url(../../../icons/Trash_icon.svg);
   cursor: pointer;
   transition: opacity 0.5s ease-in-out;
 }

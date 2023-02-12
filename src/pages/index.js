@@ -1,7 +1,8 @@
-import { initialCards, profileSubtitle, inputName, inputDescription, profileForm, buttonEditProfile, profileName, inputPlaceImgLink, inputPlaceCall, buttonAddCard, cardForm, cards, popupList, popupAddCardPlace, profilePopup, validationConfig, buttonsClosePopup } from './constants.js'
-import { openPopup, closePopup } from './utils.js';
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
+import { initialCards, profileSubtitle, inputName, inputDescription, profileForm, buttonEditProfile, profileName, inputPlaceImgLink, inputPlaceCall, buttonAddCard, cardForm, cards, popupList, popupAddCardPlace, profilePopup, validationConfig, buttonsClosePopup } from '../script/constants.js'
+import { openPopup, closePopup } from '../script/utils.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import './index.css'
 
 const validatorProfileForm = new FormValidator(validationConfig, profileForm);
 validatorProfileForm.enableValidation()
