@@ -65,9 +65,11 @@ buttonEditProfile.addEventListener('click', () => {
   inputName.value = userData.userName;
   inputDescription.value = userData.userAbout
   popupEditor.open()
+  validatorProfileForm.resetValidation()
 })
 
 buttonAddCard.addEventListener('click', () => {
   newPopupCard.open()
+  validatorCardForm.resetValidation()
 })
 
