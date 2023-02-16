@@ -1,18 +1,18 @@
 export default class FormValidator {
-  constructor(validationConfig, controlSelector) {
+  constructor(validationConfig, formElement) {
     this.validationConfig = validationConfig,
-      this.controlSelector = controlSelector
+      this._formElement = formElement
   }
 
   _showError(inputElement) {
-    const errorElement = this.controlSelector.querySelector(`.${inputElement.id}-error`)
+    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`)
     errorElement.classList.add(this.validationConfig.errorClass)
     errorElement.textContent = inputElement.validationMessage;
     inputElement.classList.add(this.validationConfig.inputErrorClass);
   }
 
   _hideError(inputElement) {
-    const errorElement = this.controlSelector.querySelector(`.${inputElement.id}-error`)
+    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`)
     errorElement.classList.remove(this.validationConfig.errorClass)
     errorElement.textContent = '';
     inputElement.classList.remove(this.validationConfig.inputErrorClass);
@@ -32,8 +32,8 @@ export default class FormValidator {
   }
 
   _toggleButtonState() {
-    this.inputList = Array.from(this.controlSelector.querySelectorAll(this.validationConfig.inputSelector));
-    this.buttonElement = this.controlSelector.querySelector(this.validationConfig.activeButtonClass);
+    this.inputList = Array.from(this._formElement.querySelectorAll(this.validationConfig.inputSelector));
+    this.buttonElement = this._formElement.querySelector(this.validationConfig.activeButtonClass);
     if (this._hasInvalidInput()) {
       this.buttonElement.classList.add(this.validationConfig.inactiveButtonClass);
       this.buttonElement.disabled = true;
@@ -45,7 +45,7 @@ export default class FormValidator {
 
   _setEventListeners() {
     this._toggleButtonState();
-    this.controlSelector.addEventListener('reset', () => {
+    this._formElement.addEventListener('reset', () => {
       setTimeout(() => {
         this._toggleButtonState();
       }, 0);

@@ -6,7 +6,7 @@ export default class Card {
       this._cardTemplate = document.querySelector(templateCardSelector).content.querySelector('.card'),
       this._newCard = this._cardTemplate.cloneNode(true),
       this._cardImage = this._newCard.querySelector('.card__img'),
-      this.cardTitle = this._newCard.querySelector('.card__title'),
+      this._cardTitle = this._newCard.querySelector('.card__title'),
       this.btnDeleteCard = this._newCard.querySelector('.card__delete-button'),
       this.btnLikeCard = this._newCard.querySelector('.card__like-button');
     this.handleCardClick = handleCardClick
@@ -25,7 +25,7 @@ export default class Card {
   createCard() {
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
-    this.cardTitle.textContent = this._name;
+    this._cardTitle.textContent = this._name;
 
     this._addEventListenersToButtons()
     return this._newCard

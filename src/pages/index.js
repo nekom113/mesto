@@ -64,7 +64,6 @@ buttonEditProfile.addEventListener('click', () => {
   const userData = userProfile.getUserInfo();
   inputName.value = userData.userName;
   inputDescription.value = userData.userAbout
-  validatorProfileForm.enableValidation();
   popupEditor.open()
 })
 
