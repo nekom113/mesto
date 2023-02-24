@@ -1,6 +1,6 @@
 .profile__info {
   margin-top: 20px;
-  width: calc(100% - 38px);
+  width: calc(100% - 340px);
   padding-left: 30px;
 }
 
@@ -10,5 +10,6 @@
     margin-top: 26px;
     margin: 0 auto;
     justify-content: center;
+    width: 100%;
   }
 }

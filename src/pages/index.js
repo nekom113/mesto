@@ -5,11 +5,13 @@ import UserInfo from '../components/UserInfo.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import FormValidator from '../components/FormValidator.js';
-import { initialCards, inputName, inputDescription, profileForm, buttonEditProfile, buttonAddCard, cardForm, validationConfig } from '../script/constants.js'
-
+import { inputName, inputDescription, profileForm, buttonEditProfile, buttonAddCard, cardForm, validationConfig } from '../script/constants.js'
+import { apiSettings } from '../script/apiSettings';
+import Api from '../components/Api';
 // ===== User Profile =====
 
-const userProfile = new UserInfo({ nameSelector: '.profile__title', aboutSelector: '.profile__subtitle' })
+const api = new Api({baseUrl: apiSettings.baseUrl, headers: apiSettings.headers})
+const userProfile = new UserInfo({ nameSelector: '.profile__title', aboutSelector: '.profile__subtitle', avatarSelector: '.profile__avatar' })
 const popupEditor = new PopupWithForm('#popup-edit-profile',
   (userData) => {
     userProfile.setUserInfo(userData);
@@ -30,14 +32,7 @@ const createCard = (cardData) => {
   return card.createCard();
 }
 
-const renderSection = new Section({
-  items: initialCards,
-  renderer: (el) => {
-    renderSection.addItem(createCard(el))
-  }
-}, '.cards')
-renderSection.renderCards();
-
+const renderSection = new Section((el) => renderSection.addItem(createCard(el)), '.cards')
 
 //================ add card ===================
 
@@ -73,3 +68,10 @@ buttonAddCard.addEventListener('click', () => {
   validatorCardForm.resetValidation()
 })
 
+Promise.all([api.getProfileData(), api.getCardsData()])
+.then(([profileData, cardsData]) => {
+  userProfile.setUserInfo(profileData),
+  renderSection.renderCards(cardsData)
+
+})
+.catch((error)=> console.error('Look at this Error ===>', error))
