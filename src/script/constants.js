@@ -6,6 +6,9 @@ export const buttonEditProfile = document.querySelector('.profile__edit-button')
 export const buttonAddCard = document.querySelector('.profile__add-button')
 export const popupAddCardPlace = document.querySelector('#popup-add-card')
 export const cardForm = popupAddCardPlace.querySelector('.popup__form')
+export const avatarForm = document.querySelector('#popup-update-avatar').querySelector('.popup__form')
+export const buttonProfileAvatar = document.querySelector('.profile__avatar')
+
 // export const profileSubtitle = document.querySelector('.profile__subtitle');
 // export const buttonsClosePopup = document.querySelectorAll('.popup__close-icon')
 // export const profileName = document.querySelector('.profile__title');

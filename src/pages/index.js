@@ -5,7 +5,7 @@ import UserInfo from '../components/UserInfo.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import FormValidator from '../components/FormValidator.js';
-import { inputName, inputDescription, profileForm, buttonEditProfile, buttonAddCard, cardForm, validationConfig } from '../script/constants.js'
+import { inputName, inputDescription, profileForm, buttonEditProfile, buttonAddCard, cardForm, validationConfig, buttonProfileAvatar, avatarForm } from '../script/constants.js'
 import { apiSettings } from '../script/apiSettings';
 import Api from '../components/Api';
 // ===== User Profile =====
@@ -14,10 +14,24 @@ const api = new Api({baseUrl: apiSettings.baseUrl, headers: apiSettings.headers}
 const userProfile = new UserInfo({ nameSelector: '.profile__title', aboutSelector: '.profile__subtitle', avatarSelector: '.profile__avatar' })
 const popupEditor = new PopupWithForm('#popup-edit-profile',
   (userData) => {
-    userProfile.setUserInfo(userData);
-    popupEditor.close()
+    api.setProfileInfo(userData)
+    .then((res) => res.json())
+    .then((data) =>{
+      userProfile.setUserInfo(data)
+      popupEditor.close()
+    })
   })
 popupEditor.setEventListeners()
+const newAvatar = new PopupWithForm('#popup-update-avatar',
+  (cardData) => {
+    api.setProfileAvatar(cardData)
+    .then((res) => res.json())
+    .then((data)=>{
+      userProfile.setUserInfo(data)
+      newAvatar.close();
+    })
+  })
+  newAvatar.setEventListeners()
 
 // ===============create card==============
 
@@ -38,8 +52,12 @@ const renderSection = new Section((el) => renderSection.addItem(createCard(el)),
 
 const newPopupCard = new PopupWithForm('#popup-add-card',
   (cardData) => {
-    renderSection.addItem(createCard(cardData))
-    newPopupCard.close();
+    api.addNewCard(cardData)
+    .then((res) => res.json())
+    .then((data)=>{
+      renderSection.addItem(createCard(data))
+      newPopupCard.close();
+    })
   })
 
 newPopupCard.setEventListeners();
@@ -52,6 +70,8 @@ const validatorProfileForm = new FormValidator(validationConfig, profileForm);
 validatorProfileForm.enableValidation()
 const validatorCardForm = new FormValidator(validationConfig, cardForm);
 validatorCardForm.enableValidation()
+const validatorAvatarForm = new FormValidator(validationConfig, avatarForm);
+validatorAvatarForm.enableValidation()
 
 // ======= event listeners ================
 
@@ -65,6 +85,10 @@ buttonEditProfile.addEventListener('click', () => {
 
 buttonAddCard.addEventListener('click', () => {
   newPopupCard.open()
+  validatorCardForm.resetValidation()
+})
+buttonProfileAvatar.addEventListener('click', () => {
+  newAvatar.open()
   validatorCardForm.resetValidation()
 })
 

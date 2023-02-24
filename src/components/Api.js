@@ -3,11 +3,11 @@ export default class Api{
     this._baseUrl = baseUrl;
     this._headers = headers
   }
-  _checkResponse(response){
-    if (response.ok) {
-      return response.json()
+  _checkResponse(res){
+    if (res.ok) {
+      return res.json()
       }
-     return Promise.reject(response.status)
+     return Promise.reject(`Ошибка: ${res.status}`)
   }
   getProfileData(){
     return fetch(`${this._baseUrl}/users/me`,{
@@ -20,5 +20,34 @@ export default class Api{
       headers: this._headers
     })
     .then(this._checkResponse)
+  }
+  setProfileInfo({name, about}){
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        about
+      }) 
+    })
+  }
+  setProfileAvatar({link}){
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: link
+      }) 
+    })
+  }
+  addNewCard({name, link}){
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        link
+      }) 
+    })
   }
 }
