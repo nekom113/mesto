@@ -30,6 +30,7 @@ export default class Api{
         about
       }) 
     })
+    .then(this._checkResponse)
   }
   setProfileAvatar({link}){
     return fetch(`${this._baseUrl}/users/me/avatar`, {
@@ -39,6 +40,7 @@ export default class Api{
         avatar: link
       }) 
     })
+    .then(this._checkResponse)
   }
   addNewCard({name, link}){
     return fetch(`${this._baseUrl}/cards`, {
@@ -49,5 +51,27 @@ export default class Api{
         link
       }) 
     })
+    .then(this._checkResponse)
+  }
+  deleteCard(cardId){
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+    .then(this._checkResponse)
+  }
+  addLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: 'PUT',
+      headers: this._headers
+    })
+    .then(this._checkResponse)
+  }
+  deleteLike(id){
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+    .then(this._checkResponse)
   }
 }

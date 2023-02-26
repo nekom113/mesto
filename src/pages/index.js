@@ -8,24 +8,27 @@ import FormValidator from '../components/FormValidator.js';
 import { inputName, inputDescription, profileForm, buttonEditProfile, buttonAddCard, cardForm, validationConfig, buttonProfileAvatar, avatarForm } from '../script/constants.js'
 import { apiSettings } from '../script/apiSettings';
 import Api from '../components/Api';
+import PopupWithConfirm from '../components/PopupWithConfirm';
+import { showLoader } from '../script/utils';
 // ===== User Profile =====
 
 const api = new Api({baseUrl: apiSettings.baseUrl, headers: apiSettings.headers})
 const userProfile = new UserInfo({ nameSelector: '.profile__title', aboutSelector: '.profile__subtitle', avatarSelector: '.profile__avatar' })
 const popupEditor = new PopupWithForm('#popup-edit-profile',
   (userData) => {
+    showLoader('#popup-edit-profile', 'Сохранение...')
     api.setProfileInfo(userData)
-    .then((res) => res.json())
     .then((data) =>{
       userProfile.setUserInfo(data)
       popupEditor.close()
     })
+    .catch((err)=> console.error('Ошибка!', err))
   })
 popupEditor.setEventListeners()
 const newAvatar = new PopupWithForm('#popup-update-avatar',
   (cardData) => {
+    showLoader('#popup-update-avatar', 'Сохранение...')
     api.setProfileAvatar(cardData)
-    .then((res) => res.json())
     .then((data)=>{
       userProfile.setUserInfo(data)
       newAvatar.close();
@@ -40,9 +43,24 @@ const createCard = (cardData) => {
     cardData,
     handleCardClick: () => {
       imagePopupItem.open(cardData.name, cardData.link);
-    }
+    },
+    handleConfirmDelete: (card) => {
+      confirmDelCard.open(card) 
+    },
+    handleControlCardLike: (card) =>{
+      if(!card.checkLikeState()){ 
+        api.addLike(card.getCardId())
+        .then((data)=>{
+          card.changeLikeState(data)
+        })
+      } else{
+        api.deleteLike(cardData._id).then((data)=>{
+          card.changeLikeState(data)
+        })
+      }
+    }, 
   },
-    '#template')
+    '#template', userProfile )
   return card.createCard();
 }
 
@@ -52,13 +70,29 @@ const renderSection = new Section((el) => renderSection.addItem(createCard(el)),
 
 const newPopupCard = new PopupWithForm('#popup-add-card',
   (cardData) => {
+    showLoader('#popup-add-card', 'Сохранение...')
     api.addNewCard(cardData)
-    .then((res) => res.json())
     .then((data)=>{
       renderSection.addItem(createCard(data))
       newPopupCard.close();
     })
+    .catch((err)=> console.error('Ошибка!', err))
+    .finally(()=>showLoader('#popup-add-card', 'Сохранить'))
+    
   })
+  
+
+const confirmDelCard = new PopupWithConfirm('#popup-confirm', (cardTarget)=>{
+  showLoader('#popup-confirm', 'Сохранение...')
+  api.deleteCard(cardTarget.cardData._id)
+  .then(()=>{
+    cardTarget.handleDeleteCard()
+    confirmDelCard.close()
+  })
+  .catch((err)=> console.error('Ошибка!', err))
+  .finally(()=>showLoader('#popup-confirm', 'Да'))
+})
+confirmDelCard.setEventListeners()
 
 newPopupCard.setEventListeners();
 
@@ -98,4 +132,4 @@ Promise.all([api.getProfileData(), api.getCardsData()])
   renderSection.renderCards(cardsData)
 
 })
-.catch((error)=> console.error('Look at this Error ===>', error))
+.catch((error)=> console.log('Look at this Error ===>', error))

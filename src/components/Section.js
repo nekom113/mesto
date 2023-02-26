@@ -7,6 +7,6 @@ export default class Section {
     this._container.prepend(cardElement)
   }
   renderCards = (cardsData) => {
-    cardsData.forEach(item => this._renderer(item))
+    cardsData.reverse().forEach(item => this._renderer(item))
   }
 }

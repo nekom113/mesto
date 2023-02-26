@@ -32,7 +32,10 @@
           <img src="#" alt="Карачаевск" class="card__img">
           <div class="card__description">
             <h2 class="card__title">КараКараКарачаевск</h2>
-            <button class="card__like-button" type="button" aria-label="Добавить в избранное"></button>
+            <div class="card__likes-box">
+              <button class="card__like-button" type="button" aria-label="Добавить в избранное"></button>
+              <span class="card__likes-count">0</span>
+            </div>
           </div>
         </div>
       </template>
@@ -95,7 +98,7 @@
     <div class="popup__container">
       <button class="popup__close-icon" id="popup-close-btn" type="button" aria-label="Закрыть окно"></button>
       <h2 class="popup__title">Вы уверены?</h2>
-      <button class="popup__save-button" id="popup-save-btn" type="submit">Да</button>
+      <button class="popup__save-button" id="popup-delete-card-btn" type="submit">Да</button>
     </div>
   </div>
 </body>
