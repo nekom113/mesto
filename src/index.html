@@ -18,10 +18,10 @@
         <a class="profile__avatar"></a>
       <div class="profile__info">
         <div class="profile__title-wrapper">
-          <h1 class="profile__title">Жак</h1>
+          <h1 class="profile__title"></h1>
           <button class="profile__edit-button" type="button" aria-label="Изменить профиль"></button>
         </div>
-        <p class="profile__subtitle">Исследователь</p>
+        <p class="profile__subtitle"></p>
       </div>
       <button class="profile__add-button" type="button" aria-label="Добавить новую карточку"></button>
     </section>
@@ -31,7 +31,7 @@
           <button class="card__delete-button" type="button"></button>
           <img src="#" alt="Карачаевск" class="card__img">
           <div class="card__description">
-            <h2 class="card__title">КараКараКарачаевск</h2>
+            <h2 class="card__title"></h2>
             <div class="card__likes-box">
               <button class="card__like-button" type="button" aria-label="Добавить в избранное"></button>
               <span class="card__likes-count">0</span>
@@ -67,11 +67,11 @@
         <input class="popup__input" id="place-call" name="name" type="text" placeholder="Название" minlength="2"
           maxlength="30" required>
         <span class="popup__error place-call-error"></span>
-        <input class="popup__input" name="link" type="url" placeholder="Ссылка на картинку"
+        <input class="popup__input" id="image-link" name="link" type="url" placeholder="Ссылка на картинку"
           required>
         <span class="popup__error image-link-error"></span>
 
-        <button class="popup__save-button" type="submit">Сохранить</button>
+        <button class="popup__save-button" id="popup-save-btn" type="submit">Сохранить</button>
       </form>
     </div>
   </div>
@@ -87,9 +87,9 @@
       <button class="popup__close-icon" type="button" aria-label="Закрыть окно"></button>
       <h2 class="popup__title">Обновить аватар</h2>
       <form class="popup__form" name="updateAvatar">
-        <input class="popup__input" name="link" type="url" placeholder="Ссылка на аватар"
+        <input class="popup__input" id="avatar-link" name="link" type="url" placeholder="Ссылка на аватар"
           required>
-        <span class="popup__error image-link-error"></span>
+        <span class="popup__error avatar-link-error"></span>
         <button class="popup__save-button" type="submit">Сохранить</button>
       </form>
     </div>
