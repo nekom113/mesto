@@ -21,7 +21,7 @@ export default class Card {
   _addEventListenersToButtons = () => {
     this.btnDeleteCard.addEventListener('mousedown', () => this.handleConfirmDelete(this));
     this.btnLikeCard.addEventListener('mousedown', () => this.handleControlCardLike(this))
-    this._cardImage.addEventListener('mousedown', this.handleCardClick);
+    this._cardImage.addEventListener('click', this.handleCardClick);
   }
   handleDeleteCard() {
     this._newCard.remove()

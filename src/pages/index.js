@@ -132,4 +132,4 @@ Promise.all([api.getProfileData(), api.getCardsData()])
   renderSection.renderCards(cardsData)
 
 })
-.catch((error)=> console.log('Look at this Error ===>', error))
+.catch((error)=> console.error('Look at this Error ===>', error))
