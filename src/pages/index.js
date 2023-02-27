@@ -84,7 +84,7 @@ const newPopupCard = new PopupWithForm('#popup-add-card',
 
 const confirmDelCard = new PopupWithConfirm('#popup-confirm', (cardTarget)=>{
   showLoader('#popup-confirm', 'Сохранение...')
-  api.deleteCard(cardTarget.cardData._id)
+  api.deleteCard(cardTarget._cardData._id)
   .then(()=>{
     cardTarget.handleDeleteCard()
     confirmDelCard.close()
