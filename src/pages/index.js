@@ -12,7 +12,7 @@ import PopupWithConfirm from '../components/PopupWithConfirm';
 import { showLoader } from '../script/utils';
 // ===== User Profile =====
 
-const api = new Api({baseUrl: apiSettings.baseUrl, headers: apiSettings.headers})
+const api = new Api(apiSettings)
 const userProfile = new UserInfo({ nameSelector: '.profile__title', aboutSelector: '.profile__subtitle', avatarSelector: '.profile__avatar' })
 const popupEditor = new PopupWithForm('#popup-edit-profile',
   (userData) => {
@@ -23,6 +23,7 @@ const popupEditor = new PopupWithForm('#popup-edit-profile',
       popupEditor.close()
     })
     .catch((err)=> console.error('Ошибка!', err))
+    .finally(()=>showLoader('#popup-edit-profile', 'Сохранить'))
   })
 popupEditor.setEventListeners()
 const newAvatar = new PopupWithForm('#popup-update-avatar',
@@ -33,6 +34,8 @@ const newAvatar = new PopupWithForm('#popup-update-avatar',
       userProfile.setUserInfo(data)
       newAvatar.close();
     })
+    .catch((err)=> console.error('Ошибка!', err))
+    .finally(()=>showLoader('#popup-update-avatar', 'Сохранить'))
   })
   newAvatar.setEventListeners()
 
@@ -53,10 +56,13 @@ const createCard = (cardData) => {
         .then((data)=>{
           card.changeLikeState(data)
         })
+        .catch((err)=> console.error('Ошибка!', err))
+
       } else{
         api.deleteLike(cardData._id).then((data)=>{
           card.changeLikeState(data)
         })
+        .catch((err)=> console.error('Ошибка!', err))
       }
     }, 
   },
@@ -119,7 +125,7 @@ buttonEditProfile.addEventListener('click', () => {
 
 buttonAddCard.addEventListener('click', () => {
   newPopupCard.open()
-  validatorCardForm.resetValidation()
+  validatorAvatarForm.resetValidation()
 })
 buttonProfileAvatar.addEventListener('click', () => {
   newAvatar.open()
@@ -130,6 +136,5 @@ Promise.all([api.getProfileData(), api.getCardsData()])
 .then(([profileData, cardsData]) => {
   userProfile.setUserInfo(profileData),
   renderSection.renderCards(cardsData)
-
 })
 .catch((error)=> console.error('Look at this Error ===>', error))
