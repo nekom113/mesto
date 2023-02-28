@@ -125,11 +125,11 @@ buttonEditProfile.addEventListener('click', () => {
 
 buttonAddCard.addEventListener('click', () => {
   newPopupCard.open()
-  validatorAvatarForm.resetValidation()
+  validatorCardForm.resetValidation()
 })
 buttonProfileAvatar.addEventListener('click', () => {
   newAvatar.open()
-  validatorCardForm.resetValidation()
+  validatorAvatarForm.resetValidation()
 })
 
 Promise.all([api.getProfileData(), api.getCardsData()])

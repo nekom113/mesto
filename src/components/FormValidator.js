@@ -3,7 +3,7 @@ export default class FormValidator {
     this.validationConfig = validationConfig,
     this._formElement = formElement
     this._inputList = Array.from(this._formElement.querySelectorAll(this.validationConfig.inputSelector));
-
+    this.buttonElement = this._formElement.querySelector(this.validationConfig.activeButtonClass);
   }
 
   _showError(inputElement) {
@@ -34,7 +34,6 @@ export default class FormValidator {
   }
 
   _toggleButtonState() {
-    this.buttonElement = this._formElement.querySelector(this.validationConfig.activeButtonClass);
     if (this._hasInvalidInput()) {
       this.buttonElement.classList.add(this.validationConfig.inactiveButtonClass);
       this.buttonElement.disabled = true;
